@@ -1,6 +1,7 @@
 import Cart from 'components/cart';
 import OpenCart from 'components/cart/open-cart';
 import LogoSquare from 'components/logo-square';
+import { ModeToggle } from 'components/theme/mode-toggle';
 import { getMenu } from 'lib/shopify';
 import { Menu } from 'lib/shopify/types';
 import Link from 'next/link';
@@ -44,6 +45,7 @@ export default async function Navbar() {
           <Search />
         </div>
         <div className="flex justify-end md:w-1/3">
+          <ModeToggle />
           <Suspense fallback={<OpenCart />}>
             <Cart />
           </Suspense>

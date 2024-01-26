@@ -1,3 +1,4 @@
+import Cursor from 'components/cursor/cursor';
 import Navbar from 'components/layout/navbar';
 import { ThemeProvider } from 'components/theme/theme-provider';
 import { GeistSans } from 'geist/font';
@@ -42,6 +43,9 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           enableSystem
           disableTransitionOnChange
         >
+          <div className="pointer-events-none fixed z-[10] h-screen w-screen">
+            <Cursor />
+          </div>
           <Navbar />
           <Suspense>
             <main>{children}</main>
