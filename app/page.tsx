@@ -1,6 +1,8 @@
-import { Carousel } from 'components/carousel';
-import { ThreeItemGrid } from 'components/grid/three-items';
-import Footer from 'components/layout/footer';
+import { ResponsiveThreeItems } from 'components/grid/responsive-three-items';
+import ResponsiveFooter from 'components/layout/responsive-footer';
+import ShowReel from 'components/layout/showreel';
+import { ResponsiveCarousel } from 'components/responsive-carousel';
+import SmoothScroll from 'components/smoothScroll/smooth-scroll';
 import { Suspense } from 'react';
 
 export const runtime = 'edge';
@@ -15,13 +17,18 @@ export const metadata = {
 export default async function HomePage() {
   return (
     <>
-      <ThreeItemGrid />
-      <Suspense>
-        <Carousel />
+      <SmoothScroll>
+        <div className="h-screen w-full">
+          <ShowReel />
+        </div>
+        <ResponsiveThreeItems />
         <Suspense>
-          <Footer />
+          <ResponsiveCarousel />
+          <Suspense>
+            <ResponsiveFooter />
+          </Suspense>
         </Suspense>
-      </Suspense>
+      </SmoothScroll>
     </>
   );
 }

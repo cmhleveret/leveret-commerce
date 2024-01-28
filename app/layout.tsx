@@ -46,7 +46,6 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           <div className="pointer-events-none fixed z-[10] h-screen w-screen">
             <Cursor />
           </div>
-          {/* TEST */}
           <Navbar />
           <Suspense>
             <main>{children}</main>
