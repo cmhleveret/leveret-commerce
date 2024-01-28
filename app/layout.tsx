@@ -1,7 +1,7 @@
 import Cursor from 'components/cursor/cursor';
 import Navbar from 'components/layout/navbar';
 import { ThemeProvider } from 'components/theme/theme-provider';
-import { GeistSans } from 'geist/font';
+import { GeistSans } from 'geist/font/sans';
 import { ensureStartsWith } from 'lib/utils';
 import { ReactNode, Suspense } from 'react';
 import './globals.css';
