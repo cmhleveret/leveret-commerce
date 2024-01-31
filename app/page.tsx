@@ -20,6 +20,7 @@ export default async function HomePage() {
       <SmoothScroll>
         <div className="h-screen w-full">
           <ShowReel />
+          {/* <HoverScaleDiv/> */}
         </div>
         <ResponsiveThreeItems />
         <Suspense>

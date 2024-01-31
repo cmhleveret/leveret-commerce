@@ -1,4 +1,5 @@
 'use client';
+import { AspectRatio } from '@radix-ui/react-aspect-ratio';
 import { useGLTF } from '@react-three/drei';
 import { Canvas, useLoader } from '@react-three/fiber';
 import { CuboidCollider, Physics, RigidBody } from '@react-three/rapier';
@@ -68,21 +69,6 @@ const PhoneCollisions = () => {
     };
 
     // apply forces based upon events
-    // useEffect(() => {
-    //     if (rigidBody.current) {
-    //       // A one-off "push"
-    //       rigidBody.current.applyImpulse({ x: 0, y: 10, z: 0 }, true);
-
-    //       // A continuous force
-    //       rigidBody.current.addForce({ x: 0, y: 10, z: 0 }, true);
-
-    //       // A one-off torque rotation
-    //       rigidBody.current.applyTorqueImpulse({ x: 0, y: 10, z: 0 }, true);
-
-    //       // A continuous torque
-    //       rigidBody.current.addTorque({ x: 0, y: 10, z: 0 }, true);
-    //     }
-    //   }, []);
 
     const unsubscribeX = smoothMouse.x.onChange(updateGravity);
     const unsubscribeY = smoothMouse.y.onChange(updateGravity);
@@ -94,94 +80,96 @@ const PhoneCollisions = () => {
   }, [smoothMouse.x, smoothMouse.y]);
 
   return (
-    <Canvas shadows orthographic camera={{ position: [0, 0, 200], zoom: 60 }}>
-      <Perf position="top-left" />
-      {/* <OrbitControls makeDefault /> */}
-      <directionalLight castShadow position={[1, 1, 4]} intensity={1} />
-      <directionalLight castShadow position={[-1, -1, 4]} intensity={1} />
-      {/* <mesh position={[0, 0, 8]} >
+    <AspectRatio ratio={16 / 9} className="w-full overflow-hidden rounded-lg bg-transparent">
+      <Canvas shadows orthographic camera={{ position: [0, 0, 200], zoom: 60 }}>
+        <Perf position="top-left" />
+        {/* <OrbitControls makeDefault /> */}
+        <directionalLight castShadow position={[1, 1, 4]} intensity={1} />
+        <directionalLight castShadow position={[-1, -1, 4]} intensity={1} />
+        {/* <mesh position={[0, 0, 8]} >
             <boxGeometry args={[2, 2, 2]} />
             </mesh> */}
-      <ambientLight intensity={1.5} />
-      <Physics gravity={gravity}>
-        {/* We can animate these gravity values */}
-        <mesh
-          scale={0.04}
-          rotation-y={degreesToRadians(45)}
-          rotation-x={degreesToRadians(90)}
-          rotation-z={degreesToRadians(-90)}
-          position-y={-0.5}
-          position-x={0.5}
-        >
-          <PhoneMesh />
-        </mesh>
+        <ambientLight intensity={1.5} />
+        <Physics gravity={gravity}>
+          {/* We can animate these gravity values */}
+          <mesh
+            scale={0.04}
+            rotation-y={degreesToRadians(45)}
+            rotation-x={degreesToRadians(90)}
+            rotation-z={degreesToRadians(-90)}
+            position-y={-0.5}
+            position-x={0.5}
+          >
+            <PhoneMesh />
+          </mesh>
 
-        <RigidBody type="fixed" restitution={1} friction={0.7} onCollisionEnter={collisionEnter}>
-          {/* <mesh receiveShadow position={[0, innerHeight * -0.0065, 0]}>
+          <RigidBody type="fixed" restitution={1} friction={0.7} onCollisionEnter={collisionEnter}>
+            {/* <mesh receiveShadow position={[0, innerHeight * -0.0065, 0]}>
                         <boxGeometry args={[0.0165 * innerWidth, 0.5, 10]} /> */}
-          {/* <meshStandardMaterial color="greenyellow" /> */}
-          {/* <CuboidCollider args={[0.0165 * innerWidth / 2, 0.5 / 2, 10 / 2]} /> */}
-          {/* <meshStandardMaterial color="#a0a0a0" metalness={0.5} roughness={0.5} />
+            {/* <meshStandardMaterial color="greenyellow" /> */}
+            {/* <CuboidCollider args={[0.0165 * innerWidth / 2, 0.5 / 2, 10 / 2]} /> */}
+            {/* <meshStandardMaterial color="#a0a0a0" metalness={0.5} roughness={0.5} />
                     </mesh> */}
 
-          {/* <mesh receiveShadow position={[0, innerHeight * 0.0065, 0]}>
+            {/* <mesh receiveShadow position={[0, innerHeight * 0.0065, 0]}>
                         <boxGeometry args={[0.0165 * innerWidth, 0.5, 10]} /> */}
-          {/* <meshStandardMaterial color="greenyellow" /> */}
-          {/* <CuboidCollider args={[0.0165 * innerWidth / 2, 0.5 / 2, 10 / 2]} /> */}
-          {/* <meshStandardMaterial color="#a0a0a0" metalness={0.5} roughness={0.5} />
+            {/* <meshStandardMaterial color="greenyellow" /> */}
+            {/* <CuboidCollider args={[0.0165 * innerWidth / 2, 0.5 / 2, 10 / 2]} /> */}
+            {/* <meshStandardMaterial color="#a0a0a0" metalness={0.5} roughness={0.5} />
                     </mesh> */}
 
-          {/* <mesh receiveShadow position={[-0.0172 * innerWidth / 2, 0, 0]}>
+            {/* <mesh receiveShadow position={[-0.0172 * innerWidth / 2, 0, 0]}>
                         <boxGeometry args={[0.5, innerHeight * 0.0069 * 2, 10]} /> */}
-          {/* <meshStandardMaterial color="greenyellow" /> */}
-          {/* <CuboidCollider args={[0.0165*innerWidth/2, 0.5/2, 10/2]}/> */}
-          {/* <meshStandardMaterial color="#a0a0a0" metalness={0.5} roughness={0.5} />
-                    </mesh> */}
-
-          {/* <mesh receiveShadow position={[0.0172 * innerWidth / 2, 0, 0]}>
-                        <boxGeometry args={[0.5, innerHeight * 0.0069 * 2, 10]} /> */}
-          {/* <meshStandardMaterial color="greenyellow" /> */}
-          {/* <CuboidCollider args={[0.0165*innerWidth/2, 0.5/2, 10/2]}/> */}
-          {/* <meshStandardMaterial color="#a0a0a0" metalness={0.5} roughness={0.5} />
-                    </mesh> */}
-
-          <mesh receiveShadow position={[0, 0, -5]}>
-            <boxGeometry args={[0.0167 * innerWidth, innerHeight * 0.0069 * 2, 0.5]} />
             {/* <meshStandardMaterial color="greenyellow" /> */}
             {/* <CuboidCollider args={[0.0165*innerWidth/2, 0.5/2, 10/2]}/> */}
-            <meshStandardMaterial color="#a0a0a0" metalness={0.5} roughness={0.5} />
-          </mesh>
-          <CuboidCollider
-            args={[0.0165 * innerWidth, 0.5, 10]}
-            position={[0, innerHeight * -0.0065, 0]}
-          />
-          <CuboidCollider
-            args={[0.0165 * innerWidth, 0.5, 10]}
-            position={[0, innerHeight * 0.0065, 0]}
-          />
-          <CuboidCollider
-            args={[0.5, innerHeight * 0.0069 * 2, 10]}
-            position={[(-0.0172 * innerWidth) / 2, 0, 0]}
-          />
-          <CuboidCollider
-            args={[0.5, innerHeight * 0.0069 * 2, 10]}
-            position={[(0.0172 * innerWidth) / 2, 0, 0]}
-          />
-          <CuboidCollider
-            args={[(0.0167 * innerWidth) / 2, innerHeight * 0.0069, 0.5 / 2]}
-            position={[0, 0, 5]}
-          />
-        </RigidBody>
-        {/* <RigidBody type="fixed"> */}
-        {/* <CuboidCollider args={[10, 0.5, 10]} position={[0, 3.2, 0]} />
+            {/* <meshStandardMaterial color="#a0a0a0" metalness={0.5} roughness={0.5} />
+                    </mesh> */}
+
+            {/* <mesh receiveShadow position={[0.0172 * innerWidth / 2, 0, 0]}>
+                        <boxGeometry args={[0.5, innerHeight * 0.0069 * 2, 10]} /> */}
+            {/* <meshStandardMaterial color="greenyellow" /> */}
+            {/* <CuboidCollider args={[0.0165*innerWidth/2, 0.5/2, 10/2]}/> */}
+            {/* <meshStandardMaterial color="#a0a0a0" metalness={0.5} roughness={0.5} />
+                    </mesh> */}
+
+            <mesh receiveShadow position={[0, 0, -5]}>
+              <boxGeometry args={[0.0167 * innerWidth, innerHeight * 0.0069 * 2, 0.5]} />
+              {/* <meshStandardMaterial color="greenyellow" /> */}
+              {/* <CuboidCollider args={[0.0165*innerWidth/2, 0.5/2, 10/2]}/> */}
+              <meshStandardMaterial color="#a0a0a0" metalness={0.5} roughness={0.5} />
+            </mesh>
+            <CuboidCollider
+              args={[0.0165 * innerWidth, 0.5, 10]}
+              position={[0, innerHeight * -0.0065, 0]}
+            />
+            <CuboidCollider
+              args={[0.0165 * innerWidth, 0.5, 10]}
+              position={[0, innerHeight * 0.0065, 0]}
+            />
+            <CuboidCollider
+              args={[0.5, innerHeight * 0.0069 * 2, 10]}
+              position={[(-0.0172 * innerWidth) / 2, 0, 0]}
+            />
+            <CuboidCollider
+              args={[0.5, innerHeight * 0.0069 * 2, 10]}
+              position={[(0.0172 * innerWidth) / 2, 0, 0]}
+            />
+            <CuboidCollider
+              args={[(0.0167 * innerWidth) / 2, innerHeight * 0.0069, 0.5 / 2]}
+              position={[0, 0, 5]}
+            />
+          </RigidBody>
+          {/* <RigidBody type="fixed"> */}
+          {/* <CuboidCollider args={[10, 0.5, 10]} position={[0, 3.2, 0]} />
                     <CuboidCollider args={[5, 2, 0.5]} position={[0, 1, 5.5]} />
                     <CuboidCollider args={[5, 2, 0.5]} position={[0, 1, - 5.5]} />
                     <CuboidCollider args={[0.5, 2, 5]} position={[0.009*innerWidth, 1, 0]} />
                     <CuboidCollider args={[0.5, 2, 5]} position={[-0.009*innerWidth, 1, 0]} /> */}
-        {/* </RigidBody> */}
-      </Physics>
-      {/* <Environment preset="city" /> */}
-    </Canvas>
+          {/* </RigidBody> */}
+        </Physics>
+        {/* <Environment preset="city" /> */}
+      </Canvas>
+    </AspectRatio>
   );
 };
 
@@ -202,7 +190,7 @@ function PhoneMesh() {
 
   const rearBodyJump = () => {
     // const mass = rearBody.current.mass()
-    rearBody.current.applyImpulse({ x: 0, y: 5, z: 0 });
+    rearBody.current.applyImpulse({ x: 0, y: 10, z: 0 });
     rearBody.current.applyTorqueImpulse({
       x: Math.random() - 0.5,
       y: Math.random() - 0.5,
@@ -243,7 +231,6 @@ function PhoneMesh() {
       </RigidBody>
 
       <RigidBody
-        ref={rearBody}
         colliders="hull"
         // gravityScale={0.2}
         restitution={1}
