@@ -74,3 +74,24 @@
     @apply bg-background text-foreground;
   }
 }
+
+.navBackdrop {
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  /* background-image: radial-gradient(rgba(0, 0, 0, 0) 1px, rgba(8, 8, 10, 0.6) 1px); */
+  /* background-image: linear-gradient(rgba(0, 0, 0, 0) 1px, rgba(8, 8, 10, 0.6) 1px); */
+  background-image: linear-gradient(to right, grey 1px, transparent 1px),
+    linear-gradient(to bottom, grey 1px, transparent 1px);
+
+  /* background-image: radial-gradient(circle, #000000 1px, rgba(0, 0, 0, 0) 1px); */
+
+  background-size: 4px 4px;
+  backdrop-filter: blur(3px);
+}
+
+nav {
+}

@@ -9,44 +9,92 @@ import MobileMenu from './mobile-menu';
 // import Search from './search';
 // const { SITE_NAME } = process.env;
 
+function Backdrop() {
+  return <div className="navBackdrop absolute z-[10] h-[90px] w-full"></div>;
+}
+
 export default async function Navbar() {
   const menu = await getMenu('next-js-frontend-header-menu');
 
   return (
-    <nav className="relative flex items-center justify-between p-4 md:p-0 lg:px-0">
-      <div className="block flex-none md:hidden">
-        <MobileMenu menu={menu} />
-      </div>
+    <>
+      <Backdrop />
 
-      <div className="mb-0 flex h-[90px] w-full flex-row items-center justify-between gap-4 border px-4 align-middle backdrop-blur-sm">
-        {/* <div className="w-1/3 h-full bg-orange-600 flex-col  "> */}
-        <div className="flex w-1/3 flex-row items-center justify-start gap-4 align-middle">
-          <Link href="/">
-            <div className="h-[50px] w-[120px] rounded-sm bg-primary py-4 text-center text-xs font-normal text-black">
-              LEVERET
-            </div>
-          </Link>
-
-          <div className="flex h-[50px] w-[200px] flex-row rounded-sm">
-            <div className="font-notmal flex h-full w-1/2 flex-col justify-center rounded-bl-sm rounded-tl-sm bg-primary text-center align-middle text-xs text-secondary">
-              DIGITAL
-            </div>
-            <div className="flex h-full w-1/2 flex-col justify-center rounded-br-sm rounded-tr-sm bg-secondary text-center align-middle text-xs font-normal text-primary">
-              PHYSICAL
-            </div>
-            {/* <div className="w-[120px] h-[50px] text-center text-black text-xs font-normal bg-primary py-4 rounded-md">TOGGLE</div> */}
-          </div>
+      <nav className="relative z-[50] flex items-center justify-between p-4 md:p-0 lg:px-0">
+        <div className="block flex-none md:hidden">
+          <MobileMenu menu={menu} />
         </div>
 
-        <Suspense fallback={<OpenCart />}>
-          <Cart />
-        </Suspense>
+        {/* <div className="mb-0 flex h-[90px] w-full flex-row items-center justify-between gap-4 border px-4 align-middle backdrop-blur-sm"> */}
+        <div className="z-100 mb-0 flex h-[90px] w-full flex-row items-center justify-between gap-4 border px-4 align-middle">
+          {/* <div className="w-1/3 h-full bg-orange-600 flex-col  "> */}
+          <div className="flex w-1/3 flex-row items-center justify-start gap-4 align-middle">
+            <Link href="/">
+              <div className="h-[50px] w-[120px] rounded-sm bg-primary py-4 text-center text-xs font-normal text-black">
+                LEVERET
+              </div>
+            </Link>
 
-        {/* </div> */}
-      </div>
-    </nav>
+            <div className="flex h-[50px] w-[200px] flex-row rounded-sm">
+              <div className="font-notmal flex h-full w-1/2 flex-col justify-center rounded-bl-sm rounded-tl-sm bg-primary text-center align-middle text-xs text-secondary">
+                DIGITAL
+              </div>
+              <div className="flex h-full w-1/2 flex-col justify-center rounded-br-sm rounded-tr-sm bg-secondary text-center align-middle text-xs font-normal text-primary">
+                PHYSICAL
+              </div>
+              {/* <div className="w-[120px] h-[50px] text-center text-black text-xs font-normal bg-primary py-4 rounded-md">TOGGLE</div> */}
+            </div>
+          </div>
+
+          <Suspense fallback={<OpenCart />}>
+            <Cart />
+          </Suspense>
+
+          {/* </div> */}
+        </div>
+      </nav>
+    </>
   );
 }
+
+// export default async function Navbar() {
+//   const menu = await getMenu('next-js-frontend-header-menu');
+
+//   return (
+//     <nav className="relative flex items-center justify-between p-4 md:p-0 lg:px-0">
+//       <div className="block flex-none md:hidden">
+//         <MobileMenu menu={menu} />
+//       </div>
+
+//       <div className="mb-0 flex h-[90px] w-full flex-row items-center justify-between gap-4 border px-4 align-middle backdrop-blur-sm">
+//         {/* <div className="w-1/3 h-full bg-orange-600 flex-col  "> */}
+//         <div className="flex w-1/3 flex-row items-center justify-start gap-4 align-middle">
+//           <Link href="/">
+//             <div className="h-[50px] w-[120px] rounded-sm bg-primary py-4 text-center text-xs font-normal text-black">
+//               LEVERET
+//             </div>
+//           </Link>
+
+//           <div className="flex h-[50px] w-[200px] flex-row rounded-sm">
+//             <div className="font-notmal flex h-full w-1/2 flex-col justify-center rounded-bl-sm rounded-tl-sm bg-primary text-center align-middle text-xs text-secondary">
+//               DIGITAL
+//             </div>
+//             <div className="flex h-full w-1/2 flex-col justify-center rounded-br-sm rounded-tr-sm bg-secondary text-center align-middle text-xs font-normal text-primary">
+//               PHYSICAL
+//             </div>
+//             {/* <div className="w-[120px] h-[50px] text-center text-black text-xs font-normal bg-primary py-4 rounded-md">TOGGLE</div> */}
+//           </div>
+//         </div>
+
+//         <Suspense fallback={<OpenCart />}>
+//           <Cart />
+//         </Suspense>
+
+//         {/* </div> */}
+//       </div>
+//     </nav>
+//   );
+// }
 
 {
   /* <div className="flex w-full md:w-1/3">
