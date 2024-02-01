@@ -37,7 +37,7 @@ function ThreeItemGridItem({
 }
 
 export async function ResponsiveThreeItems() {
-  const response = await fetch('/api/shopify');
+  const response = await fetch('/api/shopify?collection=hidden-featured-items');
   const homepageItems = await response.json();
 
   if (!homepageItems || homepageItems.length < 3) return null;
@@ -97,7 +97,7 @@ export async function ResponsiveThreeItems() {
         initial="base"
         whileHover="hover"
       >
-        <div className="h-full w-full rounded-lg bg-orange-300">
+        <div className="h-full w-full rounded-lg ">
           <ThreeItemGridItem size="half" item={firstProduct} priority={true} />
         </div>
       </motion.div>
@@ -108,7 +108,7 @@ export async function ResponsiveThreeItems() {
         whileHover="hover"
       >
         <motion.div
-          className="w-full rounded-lg bg-orange-500"
+          className="w-full rounded-lg "
           variants={topRightVariants}
           initial="base"
           whileHover="hover"
@@ -116,7 +116,7 @@ export async function ResponsiveThreeItems() {
           <ThreeItemGridItem size="half" item={secondProduct} priority={true} />
         </motion.div>
         <motion.div
-          className="h-full w-full rounded-lg bg-red-300"
+          className="h-full w-full rounded-lg "
           variants={bottomRightVariants}
           initial="base"
           whileHover="hover"
