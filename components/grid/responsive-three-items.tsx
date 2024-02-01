@@ -14,13 +14,8 @@ function ThreeItemGridItem({
   priority?: boolean;
 }) {
   return (
-    <div
-      className={size === 'full' ? 'md:col-span-4 md:row-span-2' : 'md:col-span-2 md:row-span-1'}
-    >
-      <Link
-        className="relative block aspect-square h-full w-full "
-        href={`/product/${item.handle}`}
-      >
+    <div className="h-full w-full">
+      <Link className="relative block h-full w-full " href={`/product/${item.handle}`}>
         <GridTileImage
           src={item.featuredImage.url}
           fill
@@ -48,12 +43,42 @@ export async function ResponsiveThreeItems() {
   if (!homepageItems || homepageItems.length < 3) return null;
   const [firstProduct, secondProduct, thirdProduct] = homepageItems;
 
-  const variants = {
+  const leftVariants = {
     base: {
       width: '50%'
     },
     hover: {
       width: '80%',
+      transition: { duration: 0.3 }
+    }
+  };
+
+  const rightVariants = {
+    base: {
+      width: '50%'
+    },
+    hover: {
+      width: '80%',
+      transition: { duration: 0.3 }
+    }
+  };
+
+  const topRightVariants = {
+    base: {
+      height: '50%'
+    },
+    hover: {
+      height: '80%',
+      transition: { duration: 0.3 }
+    }
+  };
+
+  const bottomRightVariants = {
+    base: {
+      height: '50%'
+    },
+    hover: {
+      height: '90%',
       transition: { duration: 0.3 }
     }
   };
@@ -66,18 +91,39 @@ export async function ResponsiveThreeItems() {
     // </section>
 
     <section className="flex h-screen w-screen flex-row p-4 ">
-      <div className="flex h-full w-1/2 items-center justify-center p-4 pr-2 ">
+      <motion.div
+        className="flex h-full  items-center justify-center p-4 pr-2 "
+        variants={leftVariants}
+        initial="base"
+        whileHover="hover"
+      >
+        <div className="h-full w-full rounded-lg bg-orange-300">
+          <ThreeItemGridItem size="half" item={firstProduct} priority={true} />
+        </div>
+      </motion.div>
+      <motion.div
+        className="flex h-full flex-col items-center justify-center gap-4 p-4  pl-2"
+        variants={rightVariants}
+        initial="base"
+        whileHover="hover"
+      >
         <motion.div
-          className="h-full rounded-lg bg-orange-300"
-          variants={variants}
+          className="w-full rounded-lg bg-orange-500"
+          variants={topRightVariants}
           initial="base"
           whileHover="hover"
-        ></motion.div>
-      </div>
-      <div className="flex h-full w-1/2 flex-col items-center justify-center gap-4 p-4  pl-2">
-        <div className="h-1/2 w-full rounded-lg bg-orange-500"></div>
-        <div className="h-1/2 w-full rounded-lg bg-red-300"></div>
-      </div>
+        >
+          <ThreeItemGridItem size="half" item={secondProduct} priority={true} />
+        </motion.div>
+        <motion.div
+          className="h-full w-full rounded-lg bg-red-300"
+          variants={bottomRightVariants}
+          initial="base"
+          whileHover="hover"
+        >
+          <ThreeItemGridItem size="half" item={thirdProduct} priority={true} />
+        </motion.div>
+      </motion.div>
     </section>
   );
 }
