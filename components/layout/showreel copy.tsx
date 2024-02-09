@@ -1,15 +1,13 @@
 'use client';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 // type Props = {}
 
 const mainVideo =
   'https://sgfqovigj7dc5gcw.public.blob.vercel-storage.com/timeline-noaudio-dqwYOsv9uXj78ODHOpxaIGnW3dZqaN.mov';
 const ShowReel = () => {
-  const scene = useRef<HTMLDivElement>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const videoParentRef = useRef<HTMLDivElement>(null);
+  const scene = useRef<any>(null);
 
   const { scrollYProgress } = useScroll({
     target: scene,
@@ -32,38 +30,23 @@ const ShowReel = () => {
     ['70%', '90%', '90%', '80%'] // Adjust these values based on how you want the zoom effect to look
   );
 
+  // const springWidth = useSpring(scrollYProgress, {
+  //   stiffness: 200,
+  //   damping: 30,
+  //   restDelta: 0.001
+  // });
+
+  // const width = useTransform(springWidth, [0.25, 0.3], ['0%', '90%']);
+
+  // const width = useTransform(w, [0, someOtherNumberYouPick], ['0%', '100%'])
+  const scrollRef = useRef(null);
+
   useEffect(() => {
     console.log(width);
     console.log(scrollYProgress);
   }, [width, scrollYProgress]);
 
-  const [shouldUseImage, setShouldUseImage] = useState(false);
-  useEffect(() => {
-    if (videoParentRef.current) {
-      const player: HTMLVideoElement = videoParentRef.current.children[0] as HTMLVideoElement;
-
-      if (player) {
-        // Now that player is correctly typed as HTMLVideoElement, you can safely access video-specific properties.
-        player.controls = false;
-        player.playsInline = true;
-        player.muted = true;
-        player.setAttribute('muted', '');
-        player.autoplay = true;
-
-        setTimeout(() => {
-          const promise = player.play();
-          if (promise && promise.then) {
-            promise
-              .then(() => {})
-              .catch(() => {
-                videoParentRef.current!.style.display = 'none';
-                setShouldUseImage(true);
-              });
-          }
-        }, 0);
-      }
-    }
-  }, []);
+  //video url https://sgfqovigj7dc5gcw.public.blob.vercel-storage.com/Timeline1080-znfFGAPd2i8hQq5WXSavVy1yV1z8nn.mov
 
   return (
     // <div className="relative flex h-full max-h-full w-full flex-col items-center justify-between overflow-hidden rounded-lg bg-transparent px-4 align-middle">
@@ -77,25 +60,39 @@ const ShowReel = () => {
           viewport={{ root: scrollRef }}
         >
           <AspectRatio ratio={16 / 9} className="w-full overflow-hidden rounded-lg bg-transparent">
-            {shouldUseImage ? (
-              <img src={mainVideo} alt="Muted Video" />
-            ) : (
-              <div
-                ref={videoParentRef}
-                dangerouslySetInnerHTML={{
-                  __html: `
+            {/* <Image
+              src="/Images/brickRemaster.jpg"
+              alt="Photo by Drew Beamer"
+              fill
+              className="rounded-md object-cover"
+            /> */}
+            {/* <video 
+              loop
+              muted
+              autoPlay
+              playsInline
+              preload="metadata"
+              style={{ width: '100%', height: 'auto' }}
+              aria-label="Video player">
+              <source src={'https://sgfqovigj7dc5gcw.public.blob.vercel-storage.com/timeline-noaudio-dqwYOsv9uXj78ODHOpxaIGnW3dZqaN.mov'} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video> */}
+
+            <div
+              dangerouslySetInnerHTML={{
+                __html: `
         <video
           loop
           muted
           autoplay
           playsinline
           preload="metadata"
+          style={{ width: '100%', height: 'auto' }}
         >
         <source src="${mainVideo}" type="video/mp4" />
         </video>`
-                }}
-              />
-            )}
+              }}
+            />
           </AspectRatio>
         </motion.div>
       </div>

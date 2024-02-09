@@ -18,10 +18,11 @@ export default async function HomePage() {
   return (
     <>
       <SmoothScroll>
-        <div className="h-screen w-full">
+        {/* <Suspense fallback={<VideoSkeleton />}> first frame of video or holder image*/}
+        <Suspense fallback={<p>Loading video...</p>}>
           <ShowReel />
           {/* <HoverScaleDiv/> */}
-        </div>
+        </Suspense>
         <ResponsiveThreeItems />
         <Suspense>
           <ResponsiveCarousel />
