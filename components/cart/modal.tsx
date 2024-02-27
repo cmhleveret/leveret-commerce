@@ -13,6 +13,7 @@ import CloseCart from './close-cart';
 import { DeleteItemButton } from './delete-item-button';
 import { EditItemQuantityButton } from './edit-item-quantity-button';
 import OpenCart from './open-cart';
+import OpenCartMobile from './open-cart-mobile';
 
 type MerchandiseSearchParams = {
   [key: string]: string;
@@ -42,10 +43,19 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
       <button
         aria-label="Open cart"
         onClick={openCart}
-        className="h-[50px] w-[120px] rounded-sm bg-primary py-0 text-center text-xs font-normal text-primary"
+        className="hidden h-[50px] w-[120px] rounded-sm bg-primary py-0 text-center text-xs font-normal text-primary md:block"
       >
         <OpenCart quantity={cart?.totalQuantity} />
       </button>
+
+      <button
+        aria-label="Open cart"
+        onClick={openCart}
+        className="rounded-sm py-0 text-center text-xs font-normal text-primary md:hidden "
+      >
+        <OpenCartMobile quantity={cart?.totalQuantity} />
+      </button>
+
       <Transition show={isOpen}>
         <Dialog onClose={closeCart} className="relative z-50">
           <Transition.Child

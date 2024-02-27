@@ -32,10 +32,10 @@ const ShowReel = () => {
     ['70%', '90%', '90%', '80%'] // Adjust these values based on how you want the zoom effect to look
   );
 
-  // useEffect(() => {
-  //   console.log(width);
-  //   console.log(scrollYProgress);
-  // }, [width, scrollYProgress]);
+  useEffect(() => {
+    console.log(width);
+    console.log(scrollYProgress);
+  }, [width, scrollYProgress]);
 
   const [shouldUseImage, setShouldUseImage] = useState(false);
   useEffect(() => {
@@ -76,35 +76,28 @@ const ShowReel = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ root: scrollRef }}
         >
-          <AspectRatio
-            ratio={16 / 9}
-            className="w-full rotate-90 overflow-hidden rounded-lg bg-transparent md:rotate-0 "
-          >
+          <AspectRatio ratio={16 / 9} className="w-full overflow-hidden rounded-lg bg-transparent">
             {shouldUseImage ? (
               <img src={mainVideo} alt="Muted Video" />
             ) : (
-              // <div
-              //   ref={videoParentRef}
-              //   dangerouslySetInnerHTML={{
-              //     __html: `
-              //     <video
-              //       loop
-              //       muted
-              //       autoplay
-              //       playsinline
-              //       preload="metadata"
-              //     >
-              //     <source src="${mainVideo}" type="video/mp4" />
-              //     </video>`
-              //   }}
-              // />
-              <></>
+              <div
+                ref={videoParentRef}
+                dangerouslySetInnerHTML={{
+                  __html: `
+        <video
+          loop
+          muted
+          autoplay
+          playsinline
+          preload="metadata"
+        >
+        <source src="${mainVideo}" type="video/mp4" />
+        </video>`
+                }}
+              />
             )}
           </AspectRatio>
         </motion.div>
-        {/* <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center mix-blend-difference">
-          <span className='text-white text-6xl font-extrabold'>Your Text Here</span>
-        </div> */}
       </div>
     </div>
   );

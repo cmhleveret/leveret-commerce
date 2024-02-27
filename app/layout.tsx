@@ -43,12 +43,12 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           enableSystem
           disableTransitionOnChange
         >
-          <div className="pointer-events-none fixed z-[10] h-screen w-screen">
+          <div className="pointer-events-none fixed z-[10] hidden h-screen w-screen md:block">
             <Cursor />
           </div>
           <Navbar />
           <Suspense>
-            <main>{children}</main>
+            <main className="overflow-x-hidden">{children}</main>
           </Suspense>
         </ThemeProvider>
       </body>
