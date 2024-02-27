@@ -1,11 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 
 const DigitalPhyscial = () => {
   const [isOn, setIsOn] = useState(false);
   const [animateScale, setAnimateScale] = useState(false);
+  const { setTheme } = useTheme();
 
   const toggleSwitch = () => {
     setAnimateScale(true);
@@ -24,9 +26,11 @@ const DigitalPhyscial = () => {
       }, 800);
     }
 
+    isOn ? setTheme('light') : setTheme('dark');
+
     // Cleanup function to clear the timer
     return () => clearTimeout(timerId);
-  }, [animateScale]);
+  }, [animateScale, isOn, setTheme]);
 
   const switchAnimation = {
     scale: animateScale ? 0.8 : 1, // Scale down when isOn, and back to normal size otherwise

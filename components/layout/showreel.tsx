@@ -32,6 +32,30 @@ const ShowReel = () => {
     ['70%', '90%', '90%', '80%'] // Adjust these values based on how you want the zoom effect to look
   );
 
+  const widthMobile = useTransform(
+    springWidth,
+    [zoomInThresholdStart, zoomInThresholdEnd, zoomOutThresholdStart, zoomOutThresholdEnd],
+    ['70%', '100%', '100%', '80%'] // Adjust these values based on how you want the zoom effect to look
+  );
+
+  const [isSmallDevice, setIsSmallDevice] = useState(false);
+
+  // UseEffect hook to listen for window resize and update isSmallDevice
+  useEffect(() => {
+    const checkDeviceSize = () => {
+      setIsSmallDevice(window.innerWidth < 768);
+    };
+
+    // Check once on component mount
+    checkDeviceSize();
+
+    // Add event listener for window resize
+    window.addEventListener('resize', checkDeviceSize);
+
+    // Cleanup function to remove event listener
+    return () => window.removeEventListener('resize', checkDeviceSize);
+  }, []);
+
   // useEffect(() => {
   //   console.log(width);
   //   console.log(scrollYProgress);
@@ -67,41 +91,78 @@ const ShowReel = () => {
 
   return (
     // <div className="relative flex h-full max-h-full w-full flex-col items-center justify-between overflow-hidden rounded-lg bg-transparent px-4 align-middle">
-    <div className="relative h-[200vh] w-full">
-      <div className="sticky top-0 flex h-[100vh] w-full flex-col items-center justify-between overflow-hidden rounded-lg bg-transparent px-4 align-middle">
-        <motion.div
-          className="absolute flex h-full w-full flex-col justify-center align-middle "
-          style={{ width }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ root: scrollRef }}
-        >
-          <AspectRatio
-            ratio={16 / 9}
-            className="w-full rotate-90 overflow-hidden rounded-lg bg-transparent md:rotate-0 "
+    <div className="relative h-[200vh] w-full bg-red-600">
+      <div className="sticky top-0 flex h-[100vh] w-full flex-col items-center justify-between overflow-hidden rounded-lg bg-transparent px-0 align-middle ">
+        {isSmallDevice ? (
+          <div className="absolute flex h-[100vh] w-[80vh] rotate-90 flex-row items-center justify-center  align-middle">
+            <motion.div
+              className="flex h-full w-full flex-col justify-center align-middle  "
+              style={{ width: widthMobile }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ root: scrollRef }}
+            >
+              <AspectRatio
+                ratio={16 / 9}
+                className="h-full overflow-hidden rounded-lg bg-transparent"
+              >
+                {shouldUseImage ? (
+                  <img src={mainVideo} alt="Muted Video" />
+                ) : (
+                  <div
+                    ref={videoParentRef}
+                    dangerouslySetInnerHTML={{
+                      __html: `
+                      <video
+                        loop
+                        muted
+                        autoplay
+                        playsinline
+                        preload="metadata"
+                      >
+                      <source src="${mainVideo}" type="video/mp4" />
+                      </video>`
+                    }}
+                  />
+                )}
+              </AspectRatio>
+            </motion.div>
+          </div>
+        ) : (
+          <motion.div
+            className="absolute flex h-full w-full flex-col justify-center align-middle "
+            style={{ width }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ root: scrollRef }}
           >
-            {shouldUseImage ? (
-              <img src={mainVideo} alt="Muted Video" />
-            ) : (
-              // <div
-              //   ref={videoParentRef}
-              //   dangerouslySetInnerHTML={{
-              //     __html: `
-              //     <video
-              //       loop
-              //       muted
-              //       autoplay
-              //       playsinline
-              //       preload="metadata"
-              //     >
-              //     <source src="${mainVideo}" type="video/mp4" />
-              //     </video>`
-              //   }}
-              // />
-              <></>
-            )}
-          </AspectRatio>
-        </motion.div>
+            <AspectRatio
+              ratio={16 / 9}
+              className="w-full rotate-90 overflow-hidden rounded-lg bg-transparent md:rotate-0"
+            >
+              {shouldUseImage ? (
+                <img src={mainVideo} alt="Muted Video" />
+              ) : (
+                <div
+                  ref={videoParentRef}
+                  dangerouslySetInnerHTML={{
+                    __html: `
+                    <video
+                      loop
+                      muted
+                      autoplay
+                      playsinline
+                      preload="metadata"
+                    >
+                    <source src="${mainVideo}" type="video/mp4" />
+                    </video>`
+                  }}
+                />
+              )}
+            </AspectRatio>
+          </motion.div>
+        )}
+
         {/* <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center mix-blend-difference">
           <span className='text-white text-6xl font-extrabold'>Your Text Here</span>
         </div> */}

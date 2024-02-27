@@ -48,7 +48,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           </div>
           <Navbar />
           <Suspense>
-            <main className="overflow-x-hidden">{children}</main>
+            <main className="">{children}</main>
           </Suspense>
         </ThemeProvider>
       </body>

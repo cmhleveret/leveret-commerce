@@ -20,23 +20,25 @@ export default async function Navbar() {
   return (
     <>
       {/* <Backdrop /> */}
-      <nav className="relative z-[50] flex items-center justify-between p-2 md:p-0 lg:px-0">
-        <div className="block flex-none md:hidden">
-          <MobileMenu menu={menu} />
-        </div>
-
+      <nav className="relative z-[50] flex items-center justify-between p-2 md:p-0 lg:px-0 ">
         <div className="mb-0 flex h-[50px] w-full flex-row items-center justify-between gap-4 px-4 align-middle backdrop-blur-sm md:h-[90px] md:border">
+          <div className="block flex-none md:hidden ">
+            <MobileMenu menu={menu} />
+          </div>
           {/* <div className="z-100 mb-0 flex h-[90px] w-full flex-row items-center justify-between gap-4 border px-4 align-middle"> */}
           {/* <div className="w-1/3 h-full bg-orange-600 flex-col  "> */}
-          <div className="flex w-1/3 flex-row items-center justify-start gap-4 align-middle">
+          <div className="flex w-full flex-row items-center justify-center gap-0 align-middle md:w-1/3 md:justify-start md:gap-4 ">
             <Link href="/">
               <div className="hidden h-[50px] w-[120px] rounded-sm bg-primary py-4 text-center text-xs font-normal text-black hover:bg-secondary hover:text-primary md:block">
                 LEVERET
               </div>
             </Link>
-            <DigitalPhyscial />
+            <div className="">
+              <DigitalPhyscial />
+            </div>
           </div>
-          <div>
+
+          <div className="">
             <Suspense fallback={<OpenCart />}>
               <Cart />
             </Suspense>

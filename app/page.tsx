@@ -26,7 +26,7 @@ export default async function HomePage() {
           <ShowReel />
           {/* <HoverScaleDiv/> */}
         </Suspense>
-        <div className="mb-[60px] flex h-[30vh] flex-col items-center justify-center align-middle">
+        <div className="mb-[60px] flex h-[30vh] w-full flex-col items-center justify-center overflow-hidden align-middle">
           <Words paragraph={paragraph} />
         </div>
         <ResponsiveThreeItems />
