@@ -56,7 +56,7 @@ const DigitalPhyscial = () => {
           className={`flex h-[40px] w-[200px] bg-white bg-opacity-40 md:h-[50px] ${
             isOn ? 'justify-end' : 'justify-start'
           } cursor-pointer rounded-sm p-1`}
-          data-isOn={isOn}
+          data-ison={isOn}
           onClick={toggleSwitch}
         >
           <motion.div
