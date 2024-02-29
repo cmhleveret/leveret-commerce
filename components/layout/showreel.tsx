@@ -10,6 +10,9 @@ const ShowReel = () => {
   const scene = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const videoParentRef = useRef<HTMLDivElement>(null);
+  // const [videoProgress, setVideoProgress] = useState(0);
+  const [isSmallDevice, setIsSmallDevice] = useState(false);
+  const [shouldUseImage, setShouldUseImage] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: scene,
@@ -38,8 +41,6 @@ const ShowReel = () => {
     ['70%', '100%', '100%', '80%'] // Adjust these values based on how you want the zoom effect to look
   );
 
-  const [isSmallDevice, setIsSmallDevice] = useState(false);
-
   // UseEffect hook to listen for window resize and update isSmallDevice
   useEffect(() => {
     const checkDeviceSize = () => {
@@ -57,22 +58,48 @@ const ShowReel = () => {
   }, []);
 
   // useEffect(() => {
-  //   console.log(width);
-  //   console.log(scrollYProgress);
-  // }, [width, scrollYProgress]);
+  //   if (videoParentRef.current) {
+  //     const player: HTMLVideoElement = videoParentRef.current.children[0] as HTMLVideoElement;
 
-  const [shouldUseImage, setShouldUseImage] = useState(false);
+  //     if (player) {
+  //       // Now that player is correctly typed as HTMLVideoElement, you can safely access video-specific properties.
+  //       player.controls = false;
+  //       player.playsInline = true;
+  //       player.muted = true;
+  //       player.setAttribute('muted', '');
+  //       player.autoplay = true;
+
+  //       setTimeout(() => {
+  //         const promise = player.play();
+  //         if (promise && promise.then) {
+  //           promise
+  //             .then(() => { })
+  //             .catch(() => {
+  //               videoParentRef.current!.style.display = 'none';
+  //               setShouldUseImage(true);
+  //             });
+  //         }
+  //       }, 0);
+  //     }
+  //   }
+  // }, []);
+
   useEffect(() => {
     if (videoParentRef.current) {
       const player: HTMLVideoElement = videoParentRef.current.children[0] as HTMLVideoElement;
 
       if (player) {
-        // Now that player is correctly typed as HTMLVideoElement, you can safely access video-specific properties.
         player.controls = false;
         player.playsInline = true;
         player.muted = true;
         player.setAttribute('muted', '');
         player.autoplay = true;
+
+        // Function to update video progress
+        const updateProgress = () => {
+          // const progress = (player.currentTime / player.duration) * 100;
+          // setVideoProgress(progress);
+        };
 
         setTimeout(() => {
           const promise = player.play();
@@ -85,13 +112,19 @@ const ShowReel = () => {
               });
           }
         }, 0);
+
+        // Add timeupdate event listener to update progress
+        player.addEventListener('timeupdate', updateProgress);
+
+        // Cleanup function to remove event listener
+        return () => player.removeEventListener('timeupdate', updateProgress);
       }
     }
   }, []);
 
   return (
     // <div className="relative flex h-full max-h-full w-full flex-col items-center justify-between overflow-hidden rounded-lg bg-transparent px-4 align-middle">
-    <div className="relative h-[200vh] w-full bg-red-600">
+    <div className="relative h-[200vh] w-full ">
       <div className="sticky top-0 flex h-[100vh] w-full flex-col items-center justify-between overflow-hidden rounded-lg bg-transparent px-0 align-middle ">
         {isSmallDevice ? (
           <div className="absolute flex h-[100vh] w-[80vh] rotate-90 flex-row items-center justify-center  align-middle">
@@ -104,26 +137,33 @@ const ShowReel = () => {
             >
               <AspectRatio
                 ratio={16 / 9}
-                className="h-full overflow-hidden rounded-lg bg-transparent"
+                className="h-full overflow-hidden rounded-lg border-2 border-primary bg-primary"
               >
                 {shouldUseImage ? (
                   <img src={mainVideo} alt="Muted Video" />
                 ) : (
-                  <div
-                    ref={videoParentRef}
-                    dangerouslySetInnerHTML={{
-                      __html: `
-                      <video
-                        loop
-                        muted
-                        autoplay
-                        playsinline
-                        preload="metadata"
-                      >
-                      <source src="${mainVideo}" type="video/mp4" />
-                      </video>`
-                    }}
-                  />
+                  <div className="relative h-full w-full">
+                    <div
+                      ref={videoParentRef}
+                      dangerouslySetInnerHTML={{
+                        __html: `
+                    <video
+                      loop
+                      muted
+                      autoplay
+                      playsinline
+                      preload="metadata"
+                    >
+                    <source src="${mainVideo}" type="video/mp4" />
+                    </video>`
+                      }}
+                    />
+                    {/* <div className='w-full h-full absolute top-0 left-0 flex flex-col align-middle justify-center items-center bg-red-500'>
+                      <div className='w-1/2 '>
+                        <Progress value={videoProgress} />
+                      </div>
+                    </div> */}
+                  </div>
                 )}
               </AspectRatio>
             </motion.div>
@@ -138,15 +178,23 @@ const ShowReel = () => {
           >
             <AspectRatio
               ratio={16 / 9}
-              className="w-full rotate-90 overflow-hidden rounded-lg bg-transparent md:rotate-0"
+              className="w-full rotate-90 overflow-hidden rounded-lg bg-primary md:rotate-0"
             >
               {shouldUseImage ? (
-                <img src={mainVideo} alt="Muted Video" />
+                <>
+                  <img src={mainVideo} alt="Muted Video" />
+                </>
               ) : (
-                <div
-                  ref={videoParentRef}
-                  dangerouslySetInnerHTML={{
-                    __html: `
+                <div className="relative h-full w-full">
+                  {/* <div className='w-full h-full absolute top-0 left-0 flex flex-col align-middle justify-center items-center bg-red-300 z-100'>
+                    <div className='w-1/2 bg-red-800'>
+                      <Progress value={videoProgress} />
+                    </div>
+                  </div> */}
+                  <div
+                    ref={videoParentRef}
+                    dangerouslySetInnerHTML={{
+                      __html: `
                     <video
                       loop
                       muted
@@ -156,8 +204,9 @@ const ShowReel = () => {
                     >
                     <source src="${mainVideo}" type="video/mp4" />
                     </video>`
-                  }}
-                />
+                    }}
+                  />
+                </div>
               )}
             </AspectRatio>
           </motion.div>
