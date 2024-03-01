@@ -1,9 +1,9 @@
-import Words from 'components/Copy/word';
-import { ResponsiveThreeItems } from 'components/grid/responsive-three-items';
-import ResponsiveFooter from 'components/layout/responsive-footer';
-import ShowReel from 'components/layout/showreel';
-import { ResponsiveCarousel } from 'components/responsive-carousel';
-import SmoothScroll from 'components/smoothScroll/smooth-scroll';
+import Words from 'app/components/Copy/word';
+import { ResponsiveThreeItems } from 'app/components/grid/responsive-three-items';
+import ResponsiveFooter from 'app/components/layout/responsive-footer';
+import ShowReel from 'app/components/layout/showreel';
+import { ResponsiveCarousel } from 'app/components/responsive-carousel';
+import SmoothScroll from 'app/components/smoothScroll/smooth-scroll';
 import { Suspense } from 'react';
 
 export const runtime = 'edge';

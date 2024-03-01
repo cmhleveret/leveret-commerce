@@ -1,9 +1,11 @@
-import Cursor from 'components/cursor/cursor';
-import Navbar from 'components/layout/navbar';
-import { ThemeProvider } from 'components/theme/theme-provider';
+import Cursor from 'app/components/cursor/cursor';
+import Navbar from 'app/components/layout/navbar';
+import { ThemeProvider } from 'app/components/theme/theme-provider';
 import { GeistSans } from 'geist/font/sans';
 import { ensureStartsWith } from 'lib/utils';
 import { ReactNode, Suspense } from 'react';
+import ChatBot from './components/chatBot/chat-bot';
+import Providers from './components/chatBot/providers';
 import './globals.css';
 
 const { TWITTER_CREATOR, TWITTER_SITE, SITE_NAME } = process.env;
@@ -51,6 +53,9 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
             <main className="">{children}</main>
           </Suspense>
         </ThemeProvider>
+        <Providers>
+          <ChatBot />
+        </Providers>
       </body>
     </html>
   );
