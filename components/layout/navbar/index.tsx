@@ -1,9 +1,9 @@
-import Cart from 'app/components/cart';
-import OpenCart from 'app/components/cart/open-cart';
+import Cart from 'components/cart';
+import OpenCart from 'components/cart/open-cart';
 // import LogoSquare from 'components/logo-square';
 import { getMenu } from 'lib/shopify';
 // import { Menu } from 'lib/shopify/types';
-import DigitalPhyscial from 'app/components/nav/digitalphyscial';
+import DigitalPhyscial from 'components/nav/digitalphyscial';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import MobileMenu from './mobile-menu';

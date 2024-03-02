@@ -1,9 +1,9 @@
 'use client';
 
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline';
-import { updateItemQuantity } from 'app/components/cart/actions';
-import LoadingDots from 'app/components/loading-dots';
 import clsx from 'clsx';
+import { updateItemQuantity } from 'components/cart/actions';
+import LoadingDots from 'components/loading-dots';
 import type { CartItem } from 'lib/shopify/types';
 import { useFormState, useFormStatus } from 'react-dom';
 

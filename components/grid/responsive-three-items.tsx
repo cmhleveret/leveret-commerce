@@ -1,5 +1,5 @@
 'use client';
-import { GridTileImage } from 'app/components/grid/tile';
+import { GridTileImage } from 'components/grid/tile';
 import { motion } from 'framer-motion';
 import type { Product } from 'lib/shopify/types';
 import Link from 'next/link';

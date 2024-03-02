@@ -1,6 +1,6 @@
-import Cart from 'app/components/cart';
-import OpenCart from 'app/components/cart/open-cart';
-import LogoSquare from 'app/components/logo-square';
+import Cart from 'components/cart';
+import OpenCart from 'components/cart/open-cart';
+import LogoSquare from 'components/logo-square';
 import { getMenu } from 'lib/shopify';
 import { Menu } from 'lib/shopify/types';
 import Link from 'next/link';

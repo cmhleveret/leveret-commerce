@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
-import { useStore } from '../../store/store';
+import { useStore } from '../../app/store/store';
 
 const DigitalPhyscial = () => {
   const [isOn, setIsOn] = useState(false);

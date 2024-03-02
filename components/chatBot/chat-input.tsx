@@ -7,8 +7,8 @@ import { nanoid } from 'nanoid';
 import { FC, HTMLAttributes, useContext, useRef, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import TextareaAutosize from 'react-textarea-autosize';
-import { Message } from '../../../lib/validators/message';
-import { MessagesContext } from '../../context/messages';
+import { MessagesContext } from '../../app/context/messages';
+import { Message } from '../../lib/validators/message';
 
 interface ChatInputProps extends HTMLAttributes<HTMLDivElement> {}
 

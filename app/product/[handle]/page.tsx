@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
-import { GridTileImage } from 'app/components/grid/tile';
-import Footer from 'app/components/layout/footer';
-import { Gallery } from 'app/components/product/gallery';
-import { ProductDescription } from 'app/components/product/product-description';
+import { GridTileImage } from 'components/grid/tile';
+import Footer from 'components/layout/footer';
+import { Gallery } from 'components/product/gallery';
+import { ProductDescription } from 'components/product/product-description';
 import { HIDDEN_PRODUCT_TAG } from 'lib/constants';
 import { getProduct, getProductRecommendations } from 'lib/shopify';
 import { Image } from 'lib/shopify/types';
