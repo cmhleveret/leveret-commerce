@@ -29,7 +29,7 @@ export default async function OpengraphImage(props?: Props): Promise<ImageRespon
         {
           name: 'Inter',
           data: await fetch(
-            new URL('/public/Font/Geist/GeistMono-Black.otf', import.meta.url)
+            new URL('../../public/Font/Geist/GeistMono-Black.otf', import.meta.url)
           ).then((res) => res.arrayBuffer()),
           style: 'normal',
           weight: 700
