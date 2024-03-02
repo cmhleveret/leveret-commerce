@@ -1,4 +1,6 @@
+import fs from 'fs'; // Import filesystem module
 import { ImageResponse } from 'next/og';
+import path from 'path'; // Import path module
 import LogoIcon from './icons/logo';
 
 export type Props = {
@@ -12,6 +14,12 @@ export default async function OpengraphImage(props?: Props): Promise<ImageRespon
     },
     ...props
   };
+
+  // Path to the font file, adjust the path as necessary
+  const fontPath = path.resolve('../font/GeistMono-Black.otf');
+
+  // Read the font file synchronously
+  const fontData = fs.readFileSync(fontPath);
 
   return new ImageResponse(
     (
@@ -28,9 +36,7 @@ export default async function OpengraphImage(props?: Props): Promise<ImageRespon
       fonts: [
         {
           name: 'Inter',
-          data: await fetch(new URL('../font/GeistMono-Black.otf', import.meta.url)).then((res) =>
-            res.arrayBuffer()
-          ),
+          data: fontData, // Use the read font data
           style: 'normal',
           weight: 700
         }
