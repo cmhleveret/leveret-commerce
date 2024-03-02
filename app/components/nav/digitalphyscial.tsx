@@ -3,19 +3,25 @@
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
+import { useStore } from '../../store/store';
 
 const DigitalPhyscial = () => {
   const [isOn, setIsOn] = useState(false);
   const [animateScale, setAnimateScale] = useState(false);
   const { setTheme } = useTheme();
+  const store = useStore();
+  const [set, setSet] = useState(false);
 
   const toggleSwitch = () => {
     setAnimateScale(true);
-
     setTimeout(() => {
       setIsOn(!isOn);
     }, 400);
   };
+
+  useEffect(() => {
+    set ? setTheme('dark') : setSet(true);
+  }, [set, setTheme]);
 
   useEffect(() => {
     let timerId: string | number | NodeJS.Timeout | undefined;
@@ -23,14 +29,16 @@ const DigitalPhyscial = () => {
       // Set isOn to false after 500 milliseconds
       timerId = setTimeout(() => {
         setAnimateScale(false);
+        isOn ? setTheme('light') : setTheme('dark');
       }, 800);
     }
 
-    isOn ? setTheme('light') : setTheme('dark');
+    // isOn ? setTheme('light') : setTheme('dark');
+    store.open = isOn;
 
     // Cleanup function to clear the timer
     return () => clearTimeout(timerId);
-  }, [animateScale, isOn, setTheme]);
+  }, [animateScale, isOn, setTheme, store]);
 
   const switchAnimation = {
     scale: animateScale ? 0.8 : 1, // Scale down when isOn, and back to normal size otherwise

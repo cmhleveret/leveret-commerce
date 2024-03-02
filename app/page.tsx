@@ -8,7 +8,7 @@ import { Suspense } from 'react';
 
 export const runtime = 'edge';
 
-const paragraph = 'Transforming digital into the physical';
+const paragraph = 'DIGITAL ART';
 
 export const metadata = {
   description: 'High-performance ecommerce store built with Next.js, Vercel, and Shopify.',

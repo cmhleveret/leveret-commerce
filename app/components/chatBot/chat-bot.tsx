@@ -15,9 +15,9 @@ import ChatMessages from './chat-messages';
 
 const ChatBot: FC = () => {
   return (
-    <Accordion type="single" collapsible className="relative z-40 bg-white shadow">
+    <Accordion type="single" collapsible className="relative z-40 bg-primary shadow">
       <AccordionItem value="item-1">
-        <div className="fixed bottom-8 right-8 w-80 overflow-hidden rounded-md border border-gray-200 bg-white">
+        <div className="fixed bottom-8 right-8 w-80 overflow-hidden rounded-sm  bg-primary ">
           <div className="flex h-full w-full flex-col">
             <AccordionTrigger className="border-b border-zinc-300 px-6">
               <ChatHeader />

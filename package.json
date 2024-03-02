@@ -53,10 +53,12 @@
     "react-dom": "18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-resizable-panels": "^1.0.10",
+    "react-spinners": "^0.13.8",
     "react-textarea-autosize": "^8.5.3",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.160.1",
+    "valtio": "^1.13.1",
     "zod": "^3.22.4"
   },
   "devDependencies": {

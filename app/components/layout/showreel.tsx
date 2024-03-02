@@ -2,6 +2,7 @@
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
+import { BarLoader } from 'react-spinners';
 // type Props = {}
 
 const mainVideo =
@@ -158,11 +159,10 @@ const ShowReel = () => {
                     </video>`
                       }}
                     />
-                    {/* <div className='w-full h-full absolute top-0 left-0 flex flex-col align-middle justify-center items-center bg-red-500'>
-                      <div className='w-1/2 '>
-                        <Progress value={videoProgress} />
-                      </div>
-                    </div> */}
+
+                    <div className="absolute left-0 top-0 z-[-1] flex h-full w-full flex-col items-center justify-center align-middle">
+                      <BarLoader color="#747474" />
+                    </div>
                   </div>
                 )}
               </AspectRatio>
@@ -206,6 +206,9 @@ const ShowReel = () => {
                     </video>`
                     }}
                   />
+                  <div className="absolute left-0 top-0 z-[-1] flex h-full w-full flex-col items-center justify-center align-middle">
+                    <BarLoader color="#747474" />
+                  </div>
                 </div>
               )}
             </AspectRatio>

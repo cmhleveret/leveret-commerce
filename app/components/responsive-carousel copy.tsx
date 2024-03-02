@@ -11,7 +11,7 @@ import {
   useVelocity
 } from 'framer-motion';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { GridTileImage } from './grid/tile';
 
 interface ParallaxProps {
@@ -72,44 +72,25 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
   );
 }
 
-async function getCollectionProducts(collection: string) {
-  const response = await fetch(`/api/shopify?collection=${collection}`);
+// type ResponsiveCarouselProps = {
+//   mode: string
+// }
+
+export async function ResponsiveCarousel() {
+  const state = useStore();
+
+  // Collections that start with `hidden-*` are hidden from the search page.
+  // const products = await getCollectionProducts({ collection: 'hidden-homepage-carousel' });
+
+  const response = !state
+    ? await fetch(`/api/shopify?collection=hidden-homepage-digital-carousel`)
+    : await fetch(`/api/shopify?collection=hidden-homepage-physical-carousel`);
   const products = await response.json();
-  return products;
-}
 
-interface Product {
-  handle: string;
-  title: string;
-  priceRange: {
-    maxVariantPrice: {
-      amount: string;
-      currencyCode: string;
-    };
-  };
-  featuredImage: {
-    url: string;
-  };
-}
+  if (!products?.length) return null;
 
-export function ResponsiveCarousel() {
-  // Define the state with an explicit type
-  const [carouselProducts, setCarouselProducts] = useState<Product[]>([]);
-  const store = useStore();
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const collection = store.open
-        ? 'hidden-homepage-physical-carousel'
-        : 'hidden-homepage-digital-carousel';
-      const products: Product[] = await getCollectionProducts(collection);
-      setCarouselProducts(products);
-    };
-
-    fetchProducts();
-  }, [store.open]);
-
-  if (!carouselProducts.length) return null;
+  // Purposefully duplicating products to make the carousel loop and not run out of products on wide screens.
+  const carouselProducts = [...products];
 
   return (
     <ParallaxText baseVelocity={-5}>
@@ -138,50 +119,3 @@ export function ResponsiveCarousel() {
     </ParallaxText>
   );
 }
-
-// export function ResponsiveCarousel() {
-//   const [carouselProducts, setCarouselProducts] = useState([]);
-//   const store = useStore();
-
-//   useEffect(() => {
-//     const fetchProducts = async () => {
-//       const collection = store.open ? 'hidden-homepage-physical-carousel' : 'hidden-homepage-digital-carousel';
-//       const products = await getCollectionProducts(collection);
-//       setCarouselProducts(products);
-//     };
-
-//     fetchProducts();
-//   }, [store.open]); // Dependency array includes `store.open` to refetch when it changes
-
-//   // Purposefully duplicating products to make the carousel loop and not run out of products on wide screens.
-//   const currentCarouselProducts = [...carouselProducts];
-
-//   if (!currentCarouselProducts.length) return null;
-
-//   return (
-//     <ParallaxText baseVelocity={-5}>
-//       <ul className="flex gap-4">
-//         {currentCarouselProducts.map((product, i) => (
-//           <li
-//             key={`${product.handle}${i}`}
-//             className="relative aspect-square h-[30vh] max-h-[275px] w-2/3 max-w-[475px] flex-none md:w-1/3"
-//           >
-//             <Link href={`/product/${product.handle}`} className="relative h-full w-full">
-//               <GridTileImage
-//                 alt={product.title}
-//                 label={{
-//                   title: product.title,
-//                   amount: product.priceRange.maxVariantPrice.amount,
-//                   currencyCode: product.priceRange.maxVariantPrice.currencyCode
-//                 }}
-//                 src={product.featuredImage?.url}
-//                 fill
-//                 sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
-//               />
-//             </Link>
-//           </li>
-//         ))}
-//       </ul>
-//     </ParallaxText>
-//   );
-// }
