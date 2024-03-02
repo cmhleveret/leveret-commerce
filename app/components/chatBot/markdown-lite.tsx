@@ -23,7 +23,7 @@ const MarkdownLite = ({ text }: { text: string }) => {
         rel="noopener noreferrer"
         className="break-words text-blue-600 underline underline-offset-2"
         key={linkUrl}
-        href={linkUrl}
+        href={linkUrl as string}
       >
         {linkText}
       </Link>
