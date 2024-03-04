@@ -22,6 +22,9 @@ export default async function HomePage() {
     <>
       <SmoothScroll>
         {/* <Suspense fallback={<VideoSkeleton />}> first frame of video or holder image*/}
+        {/* <div className='flex flex-row align-start justify-start items-center pl-10'>
+          <HeroText />
+        </div> */}
         <Suspense fallback={<p>Loading video...</p>}>
           <ShowReel />
           {/* <HoverScaleDiv/> */}

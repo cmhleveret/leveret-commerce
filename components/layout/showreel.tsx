@@ -1,5 +1,6 @@
 'use client';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
+import HeroText from 'components/Hero/hero-text';
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { BarLoader } from 'react-spinners';
@@ -126,9 +127,16 @@ const ShowReel = () => {
   return (
     // <div className="relative flex h-full max-h-full w-full flex-col items-center justify-between overflow-hidden rounded-lg bg-transparent px-4 align-middle">
     <div className="relative h-[200vh] w-full ">
+      <div className="align-start absolute left-0 top-0 flex flex-row items-center justify-start pl-10">
+        <HeroText />
+      </div>
+      {/* <div className='absolute bottom-0 left-0 flex flex-row align-start justify-start items-center pl-10'>
+          <HeroText/>
+        </div> */}
+
       <div className="sticky top-0 flex h-[100vh] w-full flex-col items-center justify-between overflow-hidden rounded-lg bg-transparent px-0 align-middle ">
         {isSmallDevice ? (
-          <div className="absolute flex h-[100vh] w-[80vh] rotate-90 flex-row items-center justify-center  align-middle">
+          <div className="absolute flex h-[100vh] w-[80vh] rotate-90 flex-row items-center justify-center  align-middle ">
             <motion.div
               className="flex h-full w-full flex-col justify-center align-middle  "
               style={{ width: widthMobile }}
