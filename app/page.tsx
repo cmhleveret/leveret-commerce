@@ -1,5 +1,5 @@
 import Words from 'components/Copy/word';
-import { ThreeItemGrid } from 'components/grid/three-items';
+import { ResponsiveThreeItems } from 'components/grid/responsive-three-items-test';
 import ResponsiveFooter from 'components/layout/responsive-footer';
 import ShowReel from 'components/layout/showreel-new';
 import { ResponsiveCarousel } from 'components/responsive-carousel';
@@ -32,8 +32,7 @@ export default async function HomePage() {
         <div className="mb-[60px] flex h-[30vh] w-full flex-col items-center justify-center overflow-hidden align-middle">
           <Words paragraph={paragraph} />
         </div>
-        {/* <ResponsiveThreeItems /> */}
-        <ThreeItemGrid />
+        <ResponsiveThreeItems />
         <Suspense>
           <ResponsiveCarousel />
           <Suspense>
