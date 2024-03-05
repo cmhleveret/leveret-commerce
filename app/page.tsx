@@ -1,4 +1,3 @@
-import Words from 'components/Copy/word';
 import { ResponsiveThreeItems } from 'components/grid/responsive-three-items-test';
 import ResponsiveFooter from 'components/layout/responsive-footer';
 import ShowReel from 'components/layout/showreel-new';
@@ -8,7 +7,7 @@ import { Suspense } from 'react';
 
 export const runtime = 'edge';
 
-const paragraph = 'DIGITAL ART';
+// const paragraph = 'DIGITAL ART';
 
 export const metadata = {
   description: 'High-performance ecommerce store built with Next.js, Vercel, and Shopify.',
@@ -29,9 +28,9 @@ export default async function HomePage() {
           <ShowReel />
           {/* <HoverScaleDiv/> */}
         </Suspense>
-        <div className="mb-[60px] flex h-[30vh] w-full flex-col items-center justify-center overflow-hidden align-middle">
+        {/* <div className="mb-[60px] flex h-[30vh] w-full flex-col items-center justify-center overflow-hidden align-middle">
           <Words paragraph={paragraph} />
-        </div>
+        </div> */}
         <ResponsiveThreeItems />
         <Suspense>
           <ResponsiveCarousel />

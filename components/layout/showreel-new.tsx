@@ -221,7 +221,7 @@ const ShowReel = () => {
                       <Progress value={videoProgress} />
                     </div>
                   </div> */}
-                  <div
+                  {/* <div
                     ref={videoParentRef}
                     dangerouslySetInnerHTML={{
                       __html: `
@@ -235,6 +235,19 @@ const ShowReel = () => {
                     <source src="${mainVideo}" type="video/mp4" />
                     </video>`
                     }}
+                  /> */}
+                  <ReactPlayer
+                    url={mainVideo}
+                    playing={true}
+                    width="100%"
+                    height="100%"
+                    controls={false}
+                    muted={true}
+                    loop={true}
+                    playsinline={true}
+                    onReady={() => console.log('Player is ready.')}
+                    onError={() => setShouldUseImage(true)}
+                    playIcon={<button></button>}
                   />
                   <div className="absolute left-0 top-0 z-[-1] flex h-full w-full flex-col items-center justify-center align-middle">
                     <BarLoader color="#747474" />
