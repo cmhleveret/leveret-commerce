@@ -1,6 +1,7 @@
 import Words from 'components/Copy/word';
-import { ResponsiveThreeItems } from 'components/grid/responsive-three-items-test';
+import { ThreeItemGrid } from 'components/grid/three-items';
 import ResponsiveFooter from 'components/layout/responsive-footer';
+import ShowReel from 'components/layout/showreel-new';
 import { ResponsiveCarousel } from 'components/responsive-carousel';
 import SmoothScroll from 'components/smoothScroll/smooth-scroll';
 import { Suspense } from 'react';
@@ -25,13 +26,14 @@ export default async function HomePage() {
           <HeroText />
         </div> */}
         <Suspense fallback={<p>Loading video...</p>}>
-          {/* <ShowReel /> */}
+          <ShowReel />
           {/* <HoverScaleDiv/> */}
         </Suspense>
         <div className="mb-[60px] flex h-[30vh] w-full flex-col items-center justify-center overflow-hidden align-middle">
           <Words paragraph={paragraph} />
         </div>
-        <ResponsiveThreeItems />
+        {/* <ResponsiveThreeItems /> */}
+        <ThreeItemGrid />
         <Suspense>
           <ResponsiveCarousel />
           <Suspense>
