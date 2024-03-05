@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 const HeroText = () => {
   const ln1 = 'L EV E R E T'.split(' ');
   // const ln2 = "Art".split(" ");
-  const [mode, setMode] = useState('Digital Art'.split(' '));
+  const [, setMode] = useState('Digital Art'.split(' '));
   const store = useStore();
 
   useEffect(() => {

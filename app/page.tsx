@@ -1,7 +1,7 @@
 import Words from 'components/Copy/word';
 import { ResponsiveThreeItems } from 'components/grid/responsive-three-items';
 import ResponsiveFooter from 'components/layout/responsive-footer';
-import ShowReel from 'components/layout/showreel';
+import ShowReel from 'components/layout/showreel-new';
 import { ResponsiveCarousel } from 'components/responsive-carousel';
 import SmoothScroll from 'components/smoothScroll/smooth-scroll';
 import { Suspense } from 'react';
