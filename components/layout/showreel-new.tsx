@@ -1,10 +1,10 @@
 'use client';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
-import HeroText from 'components/Hero/hero-text';
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
-import ReactPlayer from 'react-player';
 import { BarLoader } from 'react-spinners';
+import staticImage from './brickRemaster.jpg';
 // type Props = {}
 
 const mainVideo =
@@ -128,9 +128,6 @@ const ShowReel = () => {
   return (
     // <div className="relative flex h-full max-h-full w-full flex-col items-center justify-between overflow-hidden rounded-lg bg-transparent px-4 align-middle">
     <div className="relative h-[200vh] w-full ">
-      <div className="align-start absolute left-0 top-0 flex flex-row items-center justify-start pl-10">
-        <HeroText />
-      </div>
       {/* <div className='absolute bottom-0 left-0 flex flex-row align-start justify-start items-center pl-10'>
           <HeroText/>
         </div> */}
@@ -153,7 +150,7 @@ const ShowReel = () => {
                   <img src={mainVideo} alt="Muted Video" />
                 ) : (
                   <div className="relative h-full w-full">
-                    {/* <div
+                    <div
                       ref={videoParentRef}
                       dangerouslySetInnerHTML={{
                         __html: `
@@ -167,9 +164,9 @@ const ShowReel = () => {
                     <source src="${mainVideo}" type="video/mp4" />
                     </video>`
                       }}
-                    /> */}
+                    />
 
-                    <ReactPlayer
+                    {/* <ReactPlayer
                       url={mainVideo}
                       controls
                       playing
@@ -188,11 +185,18 @@ const ShowReel = () => {
                           // Specify DASH options if using DASH
                         }
                       }}
-                    />
+                    /> */}
 
-                    <div className="absolute left-0 top-0 z-[-1] flex h-full w-full flex-col items-center justify-center align-middle">
+                    <div className="absolute bottom-0 z-10  flex w-full flex-col items-center justify-center bg-red-300 p-2 align-middle">
                       <BarLoader color="#747474" />
                     </div>
+                    <Image
+                      className="bg-red-300 "
+                      fill
+                      src={staticImage}
+                      alt={'why'}
+                      placeholder={'blur'}
+                    />
                   </div>
                 )}
               </AspectRatio>
@@ -221,7 +225,7 @@ const ShowReel = () => {
                       <Progress value={videoProgress} />
                     </div>
                   </div> */}
-                  {/* <div
+                  <div
                     ref={videoParentRef}
                     dangerouslySetInnerHTML={{
                       __html: `
@@ -235,8 +239,8 @@ const ShowReel = () => {
                     <source src="${mainVideo}" type="video/mp4" />
                     </video>`
                     }}
-                  /> */}
-                  <ReactPlayer
+                  />
+                  {/* <ReactPlayer
                     url={mainVideo}
                     playing={true}
                     width="100%"
@@ -248,9 +252,18 @@ const ShowReel = () => {
                     onReady={() => console.log('Player is ready.')}
                     onError={() => setShouldUseImage(true)}
                     playIcon={<button></button>}
-                  />
+                  /> */}
                   <div className="absolute left-0 top-0 z-[-1] flex h-full w-full flex-col items-center justify-center align-middle">
-                    <BarLoader color="#747474" />
+                    <div className="absolute bottom-0 z-10  flex w-full flex-col items-center justify-center p-2 align-middle">
+                      <BarLoader color="#747474" />
+                    </div>
+                    <Image
+                      className="bg-red-300 "
+                      fill
+                      src={staticImage}
+                      alt={'why'}
+                      placeholder={'blur'}
+                    />
                   </div>
                 </div>
               )}

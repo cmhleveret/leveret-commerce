@@ -1,3 +1,4 @@
+import HeroText from 'components/Hero/hero-text';
 import { ResponsiveThreeItems } from 'components/grid/responsive-three-items-test';
 import ResponsiveFooter from 'components/layout/responsive-footer';
 import ShowReel from 'components/layout/showreel-new';
@@ -20,6 +21,9 @@ export default async function HomePage() {
   return (
     <>
       <SmoothScroll>
+        <div className="corner-border flex h-full w-full flex-row items-center justify-start ">
+          <HeroText />
+        </div>
         {/* <Suspense fallback={<VideoSkeleton />}> first frame of video or holder image*/}
         {/* <div className='flex flex-row align-start justify-start items-center pl-10'>
           <HeroText />

@@ -117,3 +117,30 @@
   display: block;
   margin-right: 30px;
 }
+
+.topLeftEdge {
+  position: 'absolute';
+  top: 0;
+  left: 0;
+  height: 25;
+  width: 25;
+  border-color: '#FFFFFF';
+  border-left-width: 3;
+  border-top-width: 3;
+}
+
+/* .corner-border {
+ 
+
+  position: relative;
+
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%"><path d="M25,2 L2,2 L2,25" fill="none" stroke="white" stroke-width="3"/><path d="M2,75 L2,98 L25,98" fill="none" stroke="white" stroke-width="3"/><path d="M75,98 L98,98 L98,75" fill="none" stroke="white" stroke-width="3"/><path d="M98,25 L98,2 L75,2" fill="none" stroke="white" stroke-width="3"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center; 
+  background-size: cover; 
+} */
+
+/* Bottom-right corner 
+
+
+/* Repeat the process for the other two corners by adding two more pseudo-elements if needed */

@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 
 const HeroText = () => {
   const ln1 = 'L EV E R E T'.split(' ');
-  // const ln2 = "Art".split(" ");
+  const ln2 = 'Scroll, You might find something you like'.split(' ');
   const [, setMode] = useState('Digital Art'.split(' '));
   const store = useStore();
 
@@ -23,9 +23,26 @@ const HeroText = () => {
     //     <p className="font-semibold font-geist-mono text-[10vh] leading-[10vh]">L EV E R E T</p>
     //     <p className="font-thin font-geist-sans text-[10vh] leading-[10vh]">Digital Art</p>
     // </div>
-    <div className="App h-screen w-screen">
-      <p className="font-geist-mono absolute left-0 top-0 pl-4 text-[8vw] font-thin  leading-[10vh] md:text-[5vw]">
+    <div className="App flex h-screen w-screen flex-col items-center justify-center align-middle">
+      <view className="topLeftEdge bg-red-200"></view>
+      <p className="font-geist-mono pl-4 text-[8vw] font-thin  leading-[10vh] md:text-[5vw]">
         {ln1.map((el, i) => (
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{
+              duration: 0.5,
+              delay: i / 10
+            }}
+            key={i}
+          >
+            {el}{' '}
+          </motion.span>
+        ))}
+      </p>
+
+      <p className="font-geist-mono pl-4 text-[4vw] font-thin  leading-[10vh] md:text-[5vw]">
+        {ln2.map((el, i) => (
           <motion.span
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

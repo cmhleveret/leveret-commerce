@@ -17,6 +17,8 @@ module.exports = {
       }
     },
     extend: {
+      borderWidth: ['before', 'after'],
+      borderColor: ['before', 'after'],
       fontFamily: {
         sans: ['var(--font-geist-sans)'],
         mono: ['var(--font-geist-mono)']

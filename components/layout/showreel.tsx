@@ -136,7 +136,7 @@ const ShowReel = () => {
 
       <div className="sticky top-0 flex h-[100vh] w-full flex-col items-center justify-between overflow-hidden rounded-lg bg-transparent px-0 align-middle ">
         {isSmallDevice ? (
-          <div className="absolute flex h-[100vh] w-[80vh] rotate-90 flex-row items-center justify-center  align-middle ">
+          <div className="absolute flex h-[100vh] w-[80vh] rotate-90 flex-row items-center justify-center  bg-red-200 align-middle">
             <motion.div
               className="flex h-full w-full flex-col justify-center align-middle  "
               style={{ width: widthMobile }}
