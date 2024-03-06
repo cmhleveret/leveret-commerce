@@ -34,7 +34,7 @@ export default async function HomePage() {
         {/* <div className="mb-[60px] flex h-[30vh] w-full flex-col items-center justify-center overflow-hidden align-middle">
           <Words paragraph={paragraph} />
         </div> */}
-        <div>
+        <div className="h-[100vh] w-full bg-red-500">
           <PhoneCollisions />
         </div>
         <ResponsiveThreeItems />
