@@ -37,7 +37,6 @@ const HeroText = ({ initialVisibility }: HeroTextProps) => {
       <AnimatePresence>
         {isVisible && (
           <motion.div className="App flex h-full w-screen flex-col items-center justify-center align-middle ">
-            <view className="topLeftEdge "></view>
             <p className="font-geist-mono pl-4 text-[8vw] leading-[10vh] text-secondary md:text-[5vw]">
               {ln1.map((el, i) => (
                 <motion.span

@@ -72,9 +72,9 @@ const PhoneCollisions = ({ initialVisibility }: PhoneCollisionsProps) => {
 
       const newGravityX = (smoothMouse.x.get() - 0.5) * 10;
       const newGravityY = (smoothMouse.y.get() - 0.5) * 10;
-      console.log('X' + newGravityX);
-      console.log('Y' + newGravityY);
-      console.log(newGravityY);
+      // console.log('X' + newGravityX);
+      // console.log('Y' + newGravityY);
+      // console.log(newGravityY);
 
       isVisible ? setGravity([newGravityX, -newGravityY, 0]) : setGravity([0, 0, 0]);
     };

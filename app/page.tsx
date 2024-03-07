@@ -23,12 +23,11 @@ export default async function HomePage() {
       <SmoothScroll>
         <div className="relative flex h-[75vh] w-full flex-col items-center justify-center pt-10 align-middle md:h-[90vh] md:pt-0">
           <HeroText initialVisibility={false} />
-
           <PhoneCollisions initialVisibility={false} />
         </div>
-        <ResponsiveThreeItems />
         <Suspense>
           <ResponsiveCarousel />
+          <ResponsiveThreeItems />
           <Suspense>
             <ResponsiveFooter />
           </Suspense>
