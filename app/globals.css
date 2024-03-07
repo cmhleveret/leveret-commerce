@@ -129,6 +129,10 @@
   border-top-width: 3;
 }
 
+.noPointerEvents {
+  pointer-events: none;
+}
+
 /* .corner-border {
  
 

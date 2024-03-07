@@ -90,7 +90,7 @@ export async function ResponsiveThreeItems() {
     //   <ThreeItemGridItem size="half" item={thirdProduct} />
     // </section>
 
-    <section className="flex h-screen w-screen flex-row p-4 ">
+    <section className="z-[100] flex h-screen w-screen flex-row p-4">
       <motion.div
         className="flex h-full  items-center justify-center p-4 pr-2 "
         variants={leftVariants}

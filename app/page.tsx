@@ -1,4 +1,5 @@
 import PhoneCollisions from 'components/3D/phone-collisions';
+import HeroText from 'components/Hero/hero-text';
 import { ResponsiveThreeItems } from 'components/grid/responsive-three-items-test';
 import ResponsiveFooter from 'components/layout/responsive-footer';
 import { ResponsiveCarousel } from 'components/responsive-carousel';
@@ -20,23 +21,11 @@ export default async function HomePage() {
   return (
     <>
       <SmoothScroll>
-        {/* <div className="corner-border flex h-full w-full flex-row items-center justify-start ">
-          <HeroText />
-        </div> */}
-        {/* <Suspense fallback={<VideoSkeleton />}> first frame of video or holder image*/}
-        {/* <div className='flex flex-row align-start justify-start items-center pl-10'>
-          <HeroText />
-        </div> */}
-        {/* <Suspense fallback={<p>Loading video...</p>}> */}
-        {/* <ShowReel /> */}
-        {/* <HoverScaleDiv/> */}
-        {/* </Suspense> */}
-        {/* <div className="mb-[60px] flex h-[30vh] w-full flex-col items-center justify-center overflow-hidden align-middle">
-          <Words paragraph={paragraph} />
-        </div> */}
-        <div className="w-fullflex h-[100vh] flex-col items-center justify-center align-middle">
-          <PhoneCollisions />
+        <div className="relative flex h-[90vh] w-full flex-col items-center justify-center align-middle">
+          <HeroText initialVisibility={false} />
+          <PhoneCollisions initialVisibility={false} />
         </div>
+
         <ResponsiveThreeItems />
         <Suspense>
           <ResponsiveCarousel />
