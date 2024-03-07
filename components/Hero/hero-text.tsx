@@ -10,6 +10,7 @@ type HeroTextProps = {
 
 const HeroText = ({ initialVisibility }: HeroTextProps) => {
   const ln1 = 'L EV E R E T'.split(' ');
+  const ln2 = 'Digital Art'.split(' ');
   const [, setMode] = useState('Digital Art'.split(' '));
   const store = useStore();
 
@@ -32,12 +33,12 @@ const HeroText = ({ initialVisibility }: HeroTextProps) => {
   }, []);
 
   return (
-    <div className="noPointerEvents absolute z-[50]">
+    <div className="noPointerEvents absolute z-[50] h-full">
       <AnimatePresence>
         {isVisible && (
-          <motion.div className="App flex h-screen w-screen flex-col items-center justify-center align-middle">
-            <view className="topLeftEdge bg-red-200"></view>
-            <p className="font-geist-mono pl-4 text-[8vw] leading-[10vh] md:text-[5vw]">
+          <motion.div className="App flex h-full w-screen flex-col items-center justify-center align-middle ">
+            <view className="topLeftEdge "></view>
+            <p className="font-geist-mono pl-4 text-[8vw] leading-[10vh] text-secondary md:text-[5vw]">
               {ln1.map((el, i) => (
                 <motion.span
                   initial={{ opacity: 0, fontWeight: 100 }}
@@ -50,6 +51,11 @@ const HeroText = ({ initialVisibility }: HeroTextProps) => {
                 >
                   {el}{' '}
                 </motion.span>
+              ))}
+            </p>
+            <p className="font-geist-mono pl-4 text-[0.5vw] font-thin leading-[2vh] text-secondary md:text-[2vw]">
+              {ln2.map((el, i) => (
+                <motion.span key={i}>{el} </motion.span>
               ))}
             </p>
           </motion.div>

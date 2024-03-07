@@ -4,7 +4,7 @@ import { Canvas, useLoader } from '@react-three/fiber';
 import { CuboidCollider, Physics, RigidBody } from '@react-three/rapier';
 import { useMotionValue, useSpring } from 'framer-motion';
 // import { Perf } from 'r3f-perf';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { Group } from 'three';
 import { TextureLoader } from 'three/src/loaders/TextureLoader.js';
@@ -91,60 +91,53 @@ const PhoneCollisions = ({ initialVisibility }: PhoneCollisionsProps) => {
   }, [isVisible, smoothMouse.x, smoothMouse.y]);
 
   return (
-    <AnimatePresence>
-      <motion.div className="opacity-1 z-[0] h-[90vh] w-full">
-        <Canvas shadows orthographic camera={{ position: [0, 0, 200], zoom: 60 }}>
-          <directionalLight castShadow position={[1, 1, 4]} intensity={1} />
-          <directionalLight castShadow position={[-1, -1, 4]} intensity={1} />
+    <motion.div className="opacity-1 z-[0] h-full w-full ">
+      <Canvas shadows orthographic camera={{ position: [0, 0, 200], zoom: 60 }} className="h-full">
+        <directionalLight castShadow position={[1, 1, 4]} intensity={1} />
+        <directionalLight castShadow position={[-1, -1, 4]} intensity={1} />
 
-          <ambientLight intensity={1.5} />
-          <Physics gravity={gravity}>
-            <mesh
-              scale={0.04}
-              rotation-y={degreesToRadians(45)}
-              rotation-x={degreesToRadians(90)}
-              rotation-z={degreesToRadians(-90)}
-              position-y={-0.5}
-              position-x={0.5}
-            >
-              <PhoneMesh />
+        <ambientLight intensity={1.5} />
+        <Physics gravity={gravity}>
+          <mesh
+            scale={0.04}
+            rotation-y={degreesToRadians(45)}
+            rotation-x={degreesToRadians(90)}
+            rotation-z={degreesToRadians(-90)}
+            position-y={-0.5}
+            position-x={0.5}
+          >
+            <PhoneMesh />
+          </mesh>
+
+          <RigidBody type="fixed" restitution={1} friction={0.7} onCollisionEnter={collisionEnter}>
+            <mesh receiveShadow position={[0, 0, -5]}>
+              <boxGeometry args={[0.0167 * innerWidth, innerHeight * 0.0069 * 2, 0.5]} />
+              <meshStandardMaterial color="#a0a0a0" metalness={0.5} roughness={0.5} />
             </mesh>
-
-            <RigidBody
-              type="fixed"
-              restitution={1}
-              friction={0.7}
-              onCollisionEnter={collisionEnter}
-            >
-              <mesh receiveShadow position={[0, 0, -5]}>
-                <boxGeometry args={[0.0167 * innerWidth, innerHeight * 0.0069 * 2, 0.5]} />
-                <meshStandardMaterial color="#a0a0a0" metalness={0.5} roughness={0.5} />
-              </mesh>
-              <CuboidCollider
-                args={[0.0165 * innerWidth, 0.5, 10]}
-                position={[0, innerHeight * -0.0065, 0]}
-              />
-              <CuboidCollider
-                args={[0.0165 * innerWidth, 0.5, 10]}
-                position={[0, innerHeight * 0.0065, 0]}
-              />
-              <CuboidCollider
-                args={[0.5, innerHeight * 0.0069 * 2, 10]}
-                position={[(-0.0172 * innerWidth) / 2, 0, 0]}
-              />
-              <CuboidCollider
-                args={[0.5, innerHeight * 0.0069 * 2, 10]}
-                position={[(0.0172 * innerWidth) / 2, 0, 0]}
-              />
-              <CuboidCollider
-                args={[(0.0167 * innerWidth) / 2, innerHeight * 0.0069, 0.5 / 2]}
-                position={[0, 0, 5]}
-              />
-            </RigidBody>
-          </Physics>
-        </Canvas>
-      </motion.div>
-    </AnimatePresence>
+            <CuboidCollider
+              args={[0.0165 * innerWidth, 0.5, 10]}
+              position={[0, innerHeight * -0.0065, 0]}
+            />
+            <CuboidCollider
+              args={[0.0165 * innerWidth, 0.5, 10]}
+              position={[0, innerHeight * 0.0065, 0]}
+            />
+            <CuboidCollider
+              args={[0.5, innerHeight * 0.0069 * 2, 10]}
+              position={[(-0.0172 * innerWidth) / 2, 0, 0]}
+            />
+            <CuboidCollider
+              args={[0.5, innerHeight * 0.0069 * 2, 10]}
+              position={[(0.0172 * innerWidth) / 2, 0, 0]}
+            />
+            <CuboidCollider
+              args={[(0.0167 * innerWidth) / 2, innerHeight * 0.0069, 0.5 / 2]}
+              position={[0, 0, 5]}
+            />
+          </RigidBody>
+        </Physics>
+      </Canvas>
+    </motion.div>
   );
 };
 
@@ -161,17 +154,17 @@ function PhoneMesh() {
     '/3DAssets/Materials/Phone/occlusion.webp'
   ]);
 
-  const rearBody = useRef<any>(null);
+  // const rearBody = useRef<any>(null);
 
-  const rearBodyJump = () => {
-    // const mass = rearBody.current.mass()
-    rearBody.current.applyImpulse({ x: 0, y: 10, z: 0 });
-    rearBody.current.applyTorqueImpulse({
-      x: Math.random() - 0.5,
-      y: Math.random() - 0.5,
-      z: Math.random() - 0.5
-    });
-  };
+  // const rearBodyJump = () => {
+  //   // const mass = rearBody.current.mass()
+  //   rearBody.current.applyImpulse({ x: 0, y: 10, z: 0 });
+  //   rearBody.current.applyTorqueImpulse({
+  //     x: Math.random() - 0.5,
+  //     y: Math.random() - 0.5,
+  //     z: Math.random() - 0.5
+  //   });
+  // };
 
   return (
     <group ref={ref}>
@@ -206,7 +199,7 @@ function PhoneMesh() {
       >
         <mesh
           //rear body
-          onClick={rearBodyJump}
+          // onClick={rearBodyJump}
           receiveShadow
           castShadow
           geometry={nodes.bp3.geometry}
