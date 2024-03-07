@@ -26,8 +26,10 @@ export default async function HomePage() {
           <PhoneCollisions initialVisibility={false} />
         </div>
         <Suspense>
-          <ResponsiveCarousel />
-          <ResponsiveThreeItems />
+          <div className="flex flex-col justify-around gap-10 pt-[5vh] align-middle">
+            <ResponsiveCarousel />
+            <ResponsiveThreeItems />
+          </div>
           <Suspense>
             <ResponsiveFooter />
           </Suspense>

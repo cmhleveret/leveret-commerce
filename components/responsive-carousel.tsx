@@ -62,11 +62,11 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
    */
   return (
     <div className="parallax">
-      <motion.div className="scroller" style={{ x }}>
-        <span className="pr-4">{children} </span>
-        <span className="pr-4">{children} </span>
-        <span className="pr-4">{children} </span>
-        <span className="pr-4">{children} </span>
+      <motion.div className="scroller " style={{ x }}>
+        <span className="pr-4 ">{children} </span>
+        <span className="pr-4 ">{children} </span>
+        <span className="pr-4 ">{children} </span>
+        <span className="pr-4 ">{children} </span>
       </motion.div>
     </div>
   );
@@ -118,7 +118,7 @@ export function ResponsiveCarousel() {
         {carouselProducts.map((product, i) => (
           <li
             key={`${product.handle}${i}`}
-            className="relative aspect-square h-[30vh] max-h-[275px] w-2/3 max-w-[475px] flex-none md:w-1/3"
+            className="relative aspect-square h-[30vh] max-h-[275px] w-1/3 max-w-[475px] flex-none md:w-1/3"
           >
             <Link href={`/product/${product.handle}`} className="relative h-full w-full">
               <GridTileImage
