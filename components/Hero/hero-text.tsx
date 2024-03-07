@@ -37,7 +37,7 @@ const HeroText = ({ initialVisibility }: HeroTextProps) => {
         {isVisible && (
           <motion.div className="App flex h-screen w-screen flex-col items-center justify-center align-middle">
             <view className="topLeftEdge bg-red-200"></view>
-            <p className="font-geist-mono pl-4 text-[8vw] leading-[10vh] md:text-[5vw] ">
+            <p className="font-geist-mono pl-4 text-[8vw] leading-[10vh] md:text-[5vw]">
               {ln1.map((el, i) => (
                 <motion.span
                   initial={{ opacity: 0, fontWeight: 100 }}
