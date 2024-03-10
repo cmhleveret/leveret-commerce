@@ -37,10 +37,10 @@ function ThreeItemGridItem({
 }
 
 export async function ResponsiveThreeItems() {
-  const response = await fetch('/api/shopify?collection=hidden-featured-items');
+  const response = await fetch('/api/shopify?collection=hidden-homepage-digital-carousel');
   const homepageItems = await response.json();
 
-  if (!homepageItems || homepageItems.length < 3) return null;
+  if (!homepageItems || homepageItems.length < 3) return <div>no items</div>;
   const [firstProduct, secondProduct, thirdProduct] = homepageItems;
 
   const leftVariants = {
