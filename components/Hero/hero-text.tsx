@@ -52,7 +52,7 @@ const HeroText = ({ initialVisibility }: HeroTextProps) => {
                 </motion.span>
               ))}
             </p>
-            <p className="font-geist-mono pl-4 text-[0.5vw] font-thin leading-[2vh] text-secondary md:text-[2vw]">
+            <p className="font-geist-mono pl-4 text-[4vw] font-thin leading-[2vh] text-secondary md:text-[2vw]">
               {ln2.map((el, i) => (
                 <motion.span key={i}>{el} </motion.span>
               ))}

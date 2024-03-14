@@ -36,6 +36,11 @@ export default async function Navbar() {
             <div className="">
               <DigitalPhyscial />
             </div>
+            <Link href="/search">
+              <div className="hidden h-[50px] w-[50px] rounded-sm bg-secondary py-4 text-center text-xs font-normal text-white hover:bg-primary hover:text-primary dark:border-neutral-700 dark:text-secondary md:block">
+                👀
+              </div>
+            </Link>
           </div>
 
           <div className="">
