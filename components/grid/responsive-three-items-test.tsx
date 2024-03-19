@@ -1,8 +1,24 @@
 'use client';
+import { useStore } from 'app/store/store';
 import { GridTileImage } from 'components/grid/tile';
 import { motion } from 'framer-motion';
 import type { Product } from 'lib/shopify/types';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+
+// interface Product {
+//   handle: string;
+//   title: string;
+//   priceRange: {
+//     maxVariantPrice: {
+//       amount: string;
+//       currencyCode: string;
+//     };
+//   };
+//   featuredImage: {
+//     url: string;
+//   };
+// }
 
 function ThreeItemGridItem({
   item,
@@ -36,13 +52,43 @@ function ThreeItemGridItem({
   );
 }
 
-export async function ResponsiveThreeItems() {
-  const response = await fetch('/api/shopify?collection=hidden-featured-digital-items');
-  const homepageItems = await response.json();
-  console.log(homepageItems);
+async function getCollectionProducts(collection: string) {
+  const response = await fetch(`/api/shopify?collection=${collection}`);
+  const products = await response.json();
+  return products;
+}
 
-  if (!homepageItems || homepageItems.length < 3) return null;
-  const [firstProduct, secondProduct, thirdProduct] = homepageItems;
+export async function ResponsiveThreeItems() {
+  // const response = await fetch('/api/shopify?collection=hidden-featured-digital-items');
+  // const homepageItems = await response.json();
+  // console.log(homepageItems);
+
+  const [homepageItems, sethomepageItems] = useState<Product[]>([]);
+  const store = useStore();
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const collection = !store.open
+        ? 'hidden-featured-physical-items'
+        : 'hidden-featured-digital-items';
+      console.log(collection);
+      const products: Product[] = await getCollectionProducts(collection);
+      sethomepageItems(products);
+    };
+
+    fetchProducts();
+  }, [store.open]);
+
+  // // if (!homepageItems || homepageItems.length < 3) return null;
+  // const [firstProduct, secondProduct, thirdProduct] = homepageItems;
+
+  if (!homepageItems.length || homepageItems.length < 3) return null;
+
+  // const [firstProduct, secondProduct, thirdProduct] = homepageItems;
+
+  const firstProduct: Product = homepageItems[0] as Product; // Type assertion here
+  const secondProduct: Product = homepageItems[1] as Product; // Type assertion here
+  const thirdProduct: Product = homepageItems[2] as Product;
 
   const leftVariants = {
     base: {
