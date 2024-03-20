@@ -84,7 +84,7 @@ export async function ResponsiveCarousel() {
 
   const response = !state
     ? await fetch(`/api/shopify?collection=hidden-homepage-digital-carousel`)
-    : await fetch(`/api/shopify?collection=hidden-homepage-physical-carousel`);
+    : await fetch(`/api/shopify?collection=hidden-homepage-carousel`);
   const products = await response.json();
 
   if (!products?.length) return null;

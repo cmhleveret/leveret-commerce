@@ -100,7 +100,7 @@ export function ResponsiveCarousel() {
   useEffect(() => {
     const fetchProducts = async () => {
       const collection = store.open
-        ? 'hidden-homepage-physical-carousel'
+        ? 'hidden-homepage-carousel'
         : 'hidden-homepage-digital-carousel';
       console.log(collection);
       const products: Product[] = await getCollectionProducts(collection);
