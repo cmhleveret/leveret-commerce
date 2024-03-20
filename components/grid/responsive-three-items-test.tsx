@@ -68,7 +68,7 @@ export async function ResponsiveThreeItems() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const collection = !store.open
+      const collection = store.open
         ? 'hidden-featured-physical-items'
         : 'hidden-featured-digital-items';
       console.log(collection);
